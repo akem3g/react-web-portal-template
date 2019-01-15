@@ -277,13 +277,13 @@ class App extends Component {
                         {is_sidebar ? <div>
                             <Header style={{ background: '#fff', padding: 0 }}>
                             <div className="header-width">
-                                <div style={{ float: 'left' }}>
+                                <div className="float-left">
                                     <Icon
                                         className="trigger icon-header-20"
                                         type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                                         onClick={this.onCollapse} />
                                 </div>
-                                <div style={{ float: 'right' }}>
+                                <div className="float-right">
                                     <Tooltip title="Nothing to do here">
                                         <Icon type="info-circle" className="padding-right-10 icon-header-16 trigger" />
                                     </Tooltip>
@@ -295,7 +295,7 @@ class App extends Component {
                                     <Tooltip title="Log Out">
                                         <Icon type="logout" className="padding-right-10 icon-header-16 trigger" onClick={() => this.logout()} />
                                     </Tooltip>
-                                    <Icon type="user" className="padding-right-10 icon-header-16" /><span style={{ fontWeight: 'bold' }}>{user_name}</span>
+                                    <Icon type="user" className="padding-right-10 icon-header-16" /><span className="text-bold">{user_name}</span>
                                 </div>
                             </div>
                             </Header>
