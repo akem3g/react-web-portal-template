@@ -1,3 +1,3 @@
-global.URL = 'http://backofficeapitemplate.test/';
+global.URL = 'http://webportal.test/';
 global.CID = 2;
-global.CSECRET = 'fA1XVCV9KAhsWIuV92htMSfG1R64yVdDLl6EzvJk';
+global.CSECRET = 'J9bLojEXfisDTSEelAgBucMVXTVzMQVBFcR51QGd';
