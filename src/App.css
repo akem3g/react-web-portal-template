@@ -184,3 +184,12 @@
 .status-active {
   color: green;
 }
+
+.icon-padding {
+  padding-right: 5px;
+  padding-bottom: 10px;
+}
+
+.icon-padding-last {
+  padding-right: 5px;
+}
