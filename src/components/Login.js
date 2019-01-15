@@ -60,22 +60,20 @@ class Login extends Component {
             return (
                 <Spin spinning={loading}>
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div>
-                            <span style={{fontWeight:'bold', fontSize:18, paddingBottom:20}}>Login</span>
-                        </div>
+                        <span className="login-text">Login</span>
                         <FormItem>
                             {getFieldDecorator('username', {
                                 rules: [{ required: true, message: 'Please input your username!' }],
                             })(
-                                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                                <Input prefix={<Icon type="user" className="icon-login-color" />} placeholder="Username" />
                             )}
                         </FormItem>
     
                         <FormItem>
                             {getFieldDecorator('password', {
-                                rules: [{ required: true, message: 'Please input your Password!' }],
+                                rules: [{ required: true, message: 'Please input your password!' }],
                             })(
-                                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                                <Input prefix={<Icon type="lock" className="icon-login-color" />} type="password" placeholder="Password" />
                             )}
                         </FormItem>
                         <Button type="primary" htmlType="submit" className="login-form-button">
