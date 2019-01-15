@@ -1,0 +1,186 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-form {
+  max-width: 400px;
+  margin: 120px auto;
+  background-color: white;
+  padding: 30px;
+  align-content: center;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.ant-checkbox-group-item {
+  display: flex;
+  height: 25px;
+}
+
+.trigger {
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.padding-30 {
+  padding: 30px;
+}
+
+.padding-bottom-20 {
+  padding-bottom: 20px;
+}
+
+.padding-right-10 {
+  padding-right: 10px;
+}
+
+.content-header {
+  background-color: #fff;
+  margin-top: 5px;
+}
+
+.icon-header-20 {
+  font-size: 20px;
+}
+
+.icon-header-16 {
+  font-size: 16px;
+}
+
+.header-width {
+  width: 100%;
+  overflow: hidden;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.margin-bottom-0 {
+  margin-bottom: 0px;
+}
+
+.margin-20 {
+  margin: 20px;
+}
+
+.exception {
+  display: flex;
+  align-items: center;
+  height: 80%;
+  min-height: 500px;
+}
+
+.img-block {
+  flex: 0 0 62.5%;
+  width: 62.5%;
+  padding-right: 152px;
+  zoom: 1;
+}
+
+.img-element {
+  height: 360px;
+  width: 100%;
+  max-width: 430px;
+  float: right;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+}
+
+.img-error-403 {
+  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg');
+}
+
+.content-error {
+  flex: auto;
+}
+
+.content-error-h1 {
+  color: #434e59;
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 72px;
+  margin-bottom: 24px;
+}
+
+.content-error-desc {
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+
+.content-error-actions {
+  margin-right: 8px;
+}
+
+.ant-table-thead > tr > th {
+  padding: 10px;
+}
+
+.ant-table-tbody > tr > td {
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+.footer {
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.status-active {
+  color: green;
+}
