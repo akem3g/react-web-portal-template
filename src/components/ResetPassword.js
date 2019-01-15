@@ -115,7 +115,7 @@ class ResetPassword extends Component {
         };
 
         return (
-            <Card className="margin-20">
+            <Card className="margin-30 margin-left-50 margin-right-50 margin-bottom-20">
                 <Spin spinning={page_loading} size="large">
                     <Form>
                         <FormItem label="Name" {...formItemLayout}>

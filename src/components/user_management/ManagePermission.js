@@ -162,7 +162,7 @@ class ManagePermission extends Component {
         if (allowed.includes('admin-tasks') || page_loading) {
             return (
                 <Spin spinning={page_loading} size="large">
-                    <div className="padding-30">
+                    <div className="padding-30 padding-left-50 padding-right-50 padding-bottom-20">
                         <Button
                             className="margin-bottom-15"
                             onClick={this.onChangeNewPermission}
