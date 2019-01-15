@@ -242,3 +242,11 @@
 .text-bold {
   font-weight: bold;
 }
+
+.ant-modal-header {
+  background-color: #f9f9f9;
+}
+
+.ant-modal-footer {
+  background-color: #f9f9f9;
+}
