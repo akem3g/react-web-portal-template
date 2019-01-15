@@ -197,6 +197,7 @@
 
 .ant-table-thead > tr > th {
   padding: 10px;
+  background-color: #f8f8f8;
 }
 
 .ant-table-tbody > tr > td {
@@ -244,9 +245,9 @@
 }
 
 .ant-modal-header {
-  background-color: #fafafa;
+  background-color: #f8f8f8;
 }
 
 .ant-modal-footer {
-  background-color: #fafafa;
+  background-color: #f8f8f8;
 }
