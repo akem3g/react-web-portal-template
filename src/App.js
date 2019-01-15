@@ -305,7 +305,7 @@ class App extends Component {
                                     {page_breadcrumb_1 ? <Breadcrumb.Item>{page_breadcrumb_1}</Breadcrumb.Item> : null}
                                     <Breadcrumb.Item>{page_title}</Breadcrumb.Item>
                                 </Breadcrumb>
-                                <h2>{page_title}</h2>
+                                <h2 className="title-bold">{page_title}</h2>
                                 <span>{page_description}</span>
                             </Card>
                         </div> : null}

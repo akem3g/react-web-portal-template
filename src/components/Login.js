@@ -60,7 +60,10 @@ class Login extends Component {
             return (
                 <Spin spinning={loading}>
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <span className="login-text">Login</span>
+                        <FormItem className="margin-bottom-0">
+                            <span className="title-bold">Login</span>
+                        </FormItem>
+
                         <FormItem>
                             {getFieldDecorator('username', {
                                 rules: [{ required: true, message: 'Please input your username!' }],
