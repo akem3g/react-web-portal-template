@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Card, Spin, Modal } from 'antd';
-import { getUser, resetPasswordUser } from '../../../helpers/AdminController';
+import { Form, Input, Button, Card, Modal } from 'antd';
+import { resetPasswordUser } from '../../../helpers/AdminController';
 
-const confirm = Modal.confirm;
+const success = Modal.success;
 const FormItem = Form.Item;
 
 class ResetPassword extends Component {
@@ -11,33 +11,16 @@ class ResetPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: '',
-            loading: false,
-            page_loading: true
+            loading: false
         }
     }
 
     componentDidMount() {
         this._isMounted = true;
-        this.showUser();
-        // this.props.pageTitle('Reset Password');
-        // this.props.pageDescription('You can reset your password here.');
-        // this.props.pageBreadCrumb1(null);
-        // this.props.pageHelmet('Reset Password');
     }
 
     componentWillUnmount() {
         this._isMounted = false;
-    }
-
-    showUser() {
-        var access_token = sessionStorage.getItem('access_token');
-        getUser(access_token)
-            .then(result => {
-                if (result.result === 'GOOD') {
-                    if(this._isMounted) this.setState({ user: result.data, page_loading: false });   
-                }
-            })
     }
 
     handleConfirmBlur = (e) => {
@@ -80,7 +63,7 @@ class ResetPassword extends Component {
                 .then(result => {
                     if (result.result === 'GOOD') {
                         this.setState({ loading: false });
-                        confirm({
+                        success({
                             title: 'Success',
                             content: 'You have sucessfully reset you password.'
                         });
@@ -91,93 +74,58 @@ class ResetPassword extends Component {
     }
 
     render() {
-        const { loading, user, page_loading } = this.state;
+        const { loading } = this.state;
         const { getFieldDecorator } = this.props.form;
-        
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 7 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 12 },
-                md: { span: 10 },
-            },
-        };
-      
-        const submitFormLayout = {
-            wrapperCol: {
-                xs: { span: 24, offset: 0 },
-                sm: { span: 10, offset: 7 },
-            },
-        };
 
         return (
-            <Card className="margin-30 margin-left-50 margin-right-50 margin-bottom-20">
-                <Spin spinning={page_loading} size="large">
-                    <Form>
-                        <FormItem label="Name" {...formItemLayout}>
-                            {getFieldDecorator('name', {
-                                initialValue: user.name,
-                            })(
-                                <Input disabled />
-                            )}
-                        </FormItem>
+            <div>
+                <h1>Reset Password</h1>
 
-                        <FormItem label="Username" {...formItemLayout}>
-                            {getFieldDecorator('username', {
-                                initialValue: user.username,
-                            })(
-                                <Input disabled />
-                            )}
-                        </FormItem>
+                <Form>
+                    <FormItem label="Current Password">
+                        {getFieldDecorator('current_password', {
+                            rules: [{
+                                required: true,
+                                message: 'Please input the current password!'
+                            }]
+                        })(
+                            <Input type="password" placeholder="Input your current password" />
+                        )}
+                    </FormItem>
 
-                        <FormItem label="Current Password" {...formItemLayout}>
-                            {getFieldDecorator('current_password', {
-                                rules: [{
-                                    required: true,
-                                    message: 'Please input the current password!'
-                                }]
-                            })(
-                                <Input type="password" />
-                            )}
-                        </FormItem>
+                    <FormItem label="New Password">
+                        {getFieldDecorator('password', {
+                            rules: [{
+                                required: true,
+                                message: 'Please input the new password!'
+                            }, {
+                                validator: this.validateToNextPassword,
+                            }],
+                        })(
+                            <Input type="password" placeholder="Input your new password" />
+                        )}
+                    </FormItem>
 
-                        <FormItem label="Password" {...formItemLayout}>
-                            {getFieldDecorator('password', {
-                                rules: [{
-                                    required: true,
-                                    message: 'Please input the new password!'
-                                }, {
-                                    validator: this.validateToNextPassword,
-                                }],
-                            })(
-                                <Input type="password" />
-                            )}
-                        </FormItem>
+                    <FormItem label="Confirm Password">
+                        {getFieldDecorator('password_confirmation', {
+                            rules: [{
+                                required: true,
+                                message: 'Please confirm your new password!'
+                            }, {
+                                validator: this.compareToFirstPassword,
+                            }],
+                        })(
+                            <Input type="password" placeholder="Confirm your new password" onBlur={this.handleConfirmBlur} />
+                        )}
+                    </FormItem>
 
-                        <FormItem label="Confirm Password" {...formItemLayout}>
-                            {getFieldDecorator('password_confirmation', {
-                                rules: [{
-                                    required: true,
-                                    message: 'Please confirm your new password!'
-                                }, {
-                                    validator: this.compareToFirstPassword,
-                                }],
-                            })(
-                                <Input type="password" onBlur={this.handleConfirmBlur} />
-                            )}
-                        </FormItem>
-
-                        <FormItem {...submitFormLayout} className="margin-bottom-0">
-                            <Button loading={loading} type="primary" onClick={() => this.handleSubmit()}>
-                                Save
-                            </Button>
-                        </FormItem>
-                    </Form>
-                </Spin>
-            </Card>
+                    <FormItem className="margin-bottom-0">
+                        <Button loading={loading} type="primary" onClick={() => this.handleSubmit()}>
+                            Save
+                        </Button>
+                    </FormItem>
+                </Form>
+            </div>
         );
     }
 }

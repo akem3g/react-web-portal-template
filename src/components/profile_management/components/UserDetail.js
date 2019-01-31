@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Layout, Menu } from 'antd';
 
 class UserDetail extends Component {
     _isMounted = false;
@@ -7,23 +6,22 @@ class UserDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            required: ['admin-tasks'],
-            allowed: [],
-            permissions: [],
-            menu_click: 1
         }
     }
 
     componentDidMount() {
-        // this.props.pageTitle('User Details');
-        // this.props.pageDescription('Update your details here.');
-        // this.props.pageBreadCrumb1(null);
-        // this.props.pageHelmet('Profile - User Details');
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {
         return (
-            <div>test</div>
+            <div>
+                <h1>User Details</h1>
+            </div>
         );
     }
 }
