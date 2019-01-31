@@ -145,6 +145,10 @@
   margin-right: 50px;
 }
 
+.margin-right-60em {
+  margin-right: 60em;
+}
+
 .exception {
   display: flex;
   align-items: center;
@@ -263,4 +267,5 @@
 
 .menu-content {
   padding: 0px 25px;
+  min-height: 450px;
 }
