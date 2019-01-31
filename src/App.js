@@ -224,7 +224,7 @@ class App extends Component {
                 </Content>
 
                 <Footer className="footer">
-                    backofficewebtemplate ©2018
+                    Hakiim Mislam ©2019
                 </Footer>
             </Layout>
         );
@@ -255,14 +255,6 @@ class App extends Component {
                                             onClick={this.onCollapse} />
                                     </div>
                                     <div className="float-right">
-                                        <Tooltip title="Nothing to do here">
-                                            <Icon type="info-circle" className="padding-right-10 icon-header-16 trigger" />
-                                        </Tooltip>
-                                        <Tooltip title="Reset Password">
-                                            <Link to="/reset-password" style={{ color: '#606060' }}>
-                                                <Icon type="lock" className="padding-right-10 icon-header-16 trigger" />
-                                            </Link>
-                                        </Tooltip>
                                         <Tooltip title="Log Out">
                                             <Icon type="logout" className="padding-right-10 icon-header-16 trigger" onClick={() => this.logout()} />
                                         </Tooltip>
