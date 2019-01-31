@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu } from 'antd';
-import { checkAccess } from '../../helpers/PermissionController';
-import Exception403 from '../../errors/Exception403';
+import { Layout, Menu, Icon } from 'antd';
 
 import ResetPassword from './components/ResetPassword';
 import UserDetail from './components/UserDetail';
@@ -50,13 +48,13 @@ class Profile extends Component {
         return (
             <div className="padding-30 padding-left-50 padding-right-50 padding-bottom-20">
                 <Layout className="menu-layout">
-                    <Sider width={200}>
+                    <Sider width={260}>
                         <Menu
                             className="menu-height"
                             mode="inline"
                             defaultSelectedKeys={['1']}>
-                            <Menu.Item key="1" onClick={() => this.setState({ menu_click: 1 })}>User Details</Menu.Item>
-                            <Menu.Item key="2" onClick={() => this.setState({ menu_click: 2 })}>Reset Password</Menu.Item>
+                            <Menu.Item key="1" onClick={() => this.setState({ menu_click: 1 })}><Icon type="user" />User Information</Menu.Item>
+                            <Menu.Item key="2" onClick={() => this.setState({ menu_click: 2 })}><Icon type="key" />Reset Password</Menu.Item>
                         </Menu>
                     </Sider>
 
