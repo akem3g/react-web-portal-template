@@ -251,3 +251,17 @@
 .ant-modal-footer {
   background-color: #f8f8f8;
 }
+
+.menu-height {
+  height: 100%;
+}
+
+.menu-layout {
+  padding: 25px;
+  background: #FFF;
+}
+
+.menu-content {
+  padding: 0px 25px;
+  min-height: 300px;
+}
