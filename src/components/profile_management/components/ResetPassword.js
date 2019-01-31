@@ -78,7 +78,7 @@ class ResetPassword extends Component {
         const { getFieldDecorator } = this.props.form;
 
         return (
-            <div>
+            <div className="margin-left-20 margin-right-20">
                 <h1>Reset Password</h1>
 
                 <Form>

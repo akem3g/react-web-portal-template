@@ -64,11 +64,11 @@ class UserDetail extends Component {
         const { getFieldDecorator } = this.props.form;
 
         return (
-            <div>
+            <div className="margin-left-20 margin-right-20">
                 <h1>User Information</h1>
 
                 <Spin spinning={page_loading} size="large">
-                    <Form layout="vertical">
+                    <Form>
                         <FormItem label="Name">
                             {getFieldDecorator('name', {
                                 initialValue: user.name,
