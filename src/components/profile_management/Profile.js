@@ -26,7 +26,11 @@ class Profile extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.props.toggleSideBar(true);
-        this.props.toggleHeaderInfo(false);
+        this.props.pageTitle('Manage Profile');
+        this.props.pageDescription('You can update your details and reset your password here.');
+        this.props.pageBreadCrumb1(null);
+        this.props.pageHelmet('Manage Profile');
+        this.props.toggleHeaderInfo(true);
     }
 
     menuSelected() {
