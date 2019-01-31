@@ -224,7 +224,7 @@ class App extends Component {
                 </Content>
 
                 <Footer className="footer">
-                    Hakiim Mislam ©2019
+                    akem3g ©2019
                 </Footer>
             </Layout>
         );
