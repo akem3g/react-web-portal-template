@@ -26,7 +26,6 @@ class Upload extends Component {
         this.props.toggleSideBar(true);
         this.props.pageTitle('Upload');
         this.props.pageDescription('Here is the example of upload photos and excel files using Ant Design.');
-        this.props.pageBreadCrumb1('Upload Management');
         this.props.pageHelmet('Manage Upload');
     }
 
