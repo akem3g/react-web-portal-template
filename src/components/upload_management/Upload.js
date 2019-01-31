@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
-import { checkAccess } from '../../helpers/PermissionController';
-import Exception403 from '../../errors/Exception403';
+// import { checkAccess } from '../../helpers/PermissionController';
+// import Exception403 from '../../errors/Exception403';
 
 import Photo from './components/Photo';
 import Excel from './components/Excel';
