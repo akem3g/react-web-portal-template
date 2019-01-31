@@ -7,12 +7,12 @@ import { showSideBarMenu } from './helpers/AdminController';
 import { PrivateRoute } from './helpers/PrivateRoute';
 
 import Login from './components/Login';
-import ResetPassword from './components/ResetPassword';
 import ManageUser from './components/user_management/ManageUser';
 import ManageMenu from './components/menu_management/ManageMenu';
 import ManageRole from './components/user_management/ManageRole';
 import ManagePermission from './components/user_management/ManagePermission';
 import Upload from './components/upload_management/Upload';
+import Profile from './components/profile_management/Profile';
 
 import './App.css';
 
@@ -32,7 +32,8 @@ class App extends Component {
             page_title: '',
             page_description: '',
             page_breadcrumb_1: null,
-            helmet: ''
+            helmet: '',
+            header_info: ''
         };
 
         this.child = React.createRef();
@@ -83,66 +84,6 @@ class App extends Component {
         });
     }
 
-    sidebar() {
-        const { sidebar } = this.state;
-        const sidebar_menus = sidebar.map((item) => {
-            let url = "/" + item.url;
-
-            if (item.sub_menus) {
-                return (
-                    <SubMenu
-                        title={<span>
-                            <Icon type={item.menu_icon} />
-                            <span>
-                                {item.parent_menu}
-                            </span>
-                        </span>}
-                        key={item.key}>
-
-                        {item.sub_menus.map((sub_menu) => {
-                            let url = "/" + sub_menu.url;
-
-                            return (
-                                <Menu.Item key={"sub_menu" + sub_menu.key}>
-                                    <Link to={url}>
-                                        <Icon type={sub_menu.submenu_icon} />
-                                        <span>
-                                            {sub_menu.name}
-                                        </span>
-                                    </Link>
-                                </Menu.Item>
-                            );
-                        })}
-                    </SubMenu>
-                );
-            }
-            else {
-                return (
-                    <Menu.Item key={"menu" + item.key}>
-                        <Link to={url}>
-                            <Icon type={item.menu_icon} />
-                            <span>
-                                {item.parent_menu}
-                            </span>
-                        </Link>
-                    </Menu.Item>
-                );
-            }
-        })
-
-        return (
-            <Sider
-                collapsible
-                collapsed={this.state.collapsed}
-                trigger={null}>
-                <div className="logo" />
-                <Menu theme="dark" mode="inline">
-                    {sidebar_menus}
-                </Menu>
-            </Sider>
-        );
-    }
-
     toggleSideBar(val) {
         const { is_sidebar } = this.state;
 
@@ -183,6 +124,14 @@ class App extends Component {
         }
     }
 
+    toggleHeaderInfo(val) {
+        const { header_info } = this.state;
+
+        if (val !== header_info) {
+            if (this._isMounted) this.setState({ header_info: val });
+        }
+    }
+
     pageRoute() {
         return (
             <Layout>
@@ -198,52 +147,53 @@ class App extends Component {
                                     pageHelmet={this.pageHelmet.bind(this)} />
                             } />
                         <PrivateRoute
-                            path="/reset-password"
+                            path="/profile"
                             component={(props) =>
-                                <ResetPassword
+                                <Profile
                                     {...props}
-                                    reloadMenu={this.fetchSideBarMenu.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)}
+                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/users"
                             component={(props) =>
                                 <ManageUser
                                     {...props}
-                                    reloadMenu={this.fetchSideBarMenu.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)}
+                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/roles"
                             component={(props) =>
                                 <ManageRole
                                     {...props}
-                                    reloadMenu={this.fetchSideBarMenu.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)}
+                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/permissions"
                             component={(props) =>
                                 <ManagePermission
                                     {...props}
-                                    reloadMenu={this.fetchSideBarMenu.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)}
+                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
+
                             } />
                         <PrivateRoute
                             path="/menu-management"
@@ -255,19 +205,20 @@ class App extends Component {
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)}
+                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/upload"
                             component={(props) =>
                                 <Upload
                                     {...props}
-                                    reloadMenu={this.fetchSideBarMenu.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)}
+                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                     </Switch>
                 </Content>
@@ -281,7 +232,7 @@ class App extends Component {
 
     render() {
         const { sidebar } = this.state;
-        const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet } = this.state;
+        const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet, header_info } = this.state;
         var user_name = sessionStorage.getItem('name');
 
         return (
@@ -315,19 +266,28 @@ class App extends Component {
                                         <Tooltip title="Log Out">
                                             <Icon type="logout" className="padding-right-10 icon-header-16 trigger" onClick={() => this.logout()} />
                                         </Tooltip>
-                                        <Icon type="user" className="padding-right-10 icon-header-16" /><span className="text-bold">{user_name}</span>
+                                        <Tooltip title="Profile">
+                                            <Link to="/profile" style={{ color: '#606060' }}>
+                                                <Icon type="user" className="padding-right-10 icon-header-16 trigger" />
+                                            </Link>
+                                        </Tooltip>
+                                        <span className="text-bold">{user_name}</span>
                                     </div>
                                 </div>
                             </Header>
-                            <Card className="content-header">
-                                <Breadcrumb className="padding-bottom-20">
-                                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                                    {page_breadcrumb_1 ? <Breadcrumb.Item>{page_breadcrumb_1}</Breadcrumb.Item> : null}
-                                    <Breadcrumb.Item>{page_title}</Breadcrumb.Item>
-                                </Breadcrumb>
-                                <h2 className="title-bold">{page_title}</h2>
-                                <span>{page_description}</span>
-                            </Card>
+
+                            {header_info ?
+                                <Card className="content-header">
+                                    <Breadcrumb className="padding-bottom-20">
+                                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                                        {page_breadcrumb_1 ? <Breadcrumb.Item>{page_breadcrumb_1}</Breadcrumb.Item> : null}
+                                        <Breadcrumb.Item>{page_title}</Breadcrumb.Item>
+                                    </Breadcrumb>
+                                    <h2 className="title-bold">{page_title}</h2>
+                                    <span>{page_description}</span>
+                                </Card>
+                            : null}
+
                         </div> : null}
                         {this.pageRoute()}
                     </Layout>
