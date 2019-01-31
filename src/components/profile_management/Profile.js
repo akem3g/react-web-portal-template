@@ -3,12 +3,12 @@ import { Layout, Menu } from 'antd';
 import { checkAccess } from '../../helpers/PermissionController';
 import Exception403 from '../../errors/Exception403';
 
-import Photo from './components/Photo';
-import Excel from './components/Excel';
+import ResetPassword from './components/ResetPassword';
+import UserDetail from './components/UserDetail';
 
 const { Content, Sider } = Layout;
 
-class Upload extends Component {
+class Profile extends Component {
     _isMounted = false;
 
     constructor(props) {
@@ -17,31 +17,31 @@ class Upload extends Component {
             required: ['admin-tasks'],
             allowed: [],
             permissions: [],
-            menu_click: 1
+            menu_click: 1,
+            page_title: '',
+            page_description: '',
+            page_breadcrumb_1: null,
+            helmet: ''
         }
     }
 
     componentDidMount() {
         this._isMounted = true;
         this.props.toggleSideBar(true);
-        this.props.pageTitle('Upload');
-        this.props.pageDescription('Here is the example of upload photos and excel files using Ant Design.');
-        this.props.pageBreadCrumb1(null);
-        this.props.pageHelmet('Manage Upload');
-        this.props.toggleHeaderInfo(true);
+        this.props.toggleHeaderInfo(false);
     }
 
     menuSelected() {
         const { menu_click } = this.state;
-        
+
         if (menu_click === 1) {
             return (
-                <Photo />
+                <UserDetail />
             );
         }
         else if (menu_click === 2) {
             return (
-                <Excel />
+                <ResetPassword />
             );
         }
     }
@@ -55,8 +55,8 @@ class Upload extends Component {
                             className="menu-height"
                             mode="inline"
                             defaultSelectedKeys={['1']}>
-                            <Menu.Item key="1" onClick={() => this.setState({ menu_click: 1 })}>Photos</Menu.Item>
-                            <Menu.Item key="2" onClick={() => this.setState({ menu_click: 2 })}>Excel Files</Menu.Item>
+                            <Menu.Item key="1" onClick={() => this.setState({ menu_click: 1 })}>User Details</Menu.Item>
+                            <Menu.Item key="2" onClick={() => this.setState({ menu_click: 2 })}>Reset Password</Menu.Item>
                         </Menu>
                     </Sider>
 
@@ -69,4 +69,4 @@ class Upload extends Component {
     }
 }
 
-export default Upload;
+export default Profile;

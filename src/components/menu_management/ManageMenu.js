@@ -40,6 +40,7 @@ class ManageMenu extends Component {
         this.props.pageDescription("You can create and configure the menu and submenu here. You can assign the roles and permissions for the menu and submenu based on the user's authorization.");
         this.props.pageBreadCrumb1(null);
         this.props.pageHelmet('Manage Menu');
+        this.props.toggleHeaderInfo(true);
     }
 
     componentWillUnmount() {

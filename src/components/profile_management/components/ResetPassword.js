@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Card, Spin, Modal } from 'antd';
-import { getUser, resetPasswordUser } from '../helpers/AdminController'
+import { getUser, resetPasswordUser } from '../../../helpers/AdminController';
 
 const confirm = Modal.confirm;
 const FormItem = Form.Item;
@@ -20,11 +20,10 @@ class ResetPassword extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.showUser();
-        this.props.toggleSideBar(true);
-        this.props.pageTitle('Reset Password');
-        this.props.pageDescription('You can reset your password here.');
-        this.props.pageBreadCrumb1(null);
-        this.props.pageHelmet('Reset Password');
+        // this.props.pageTitle('Reset Password');
+        // this.props.pageDescription('You can reset your password here.');
+        // this.props.pageBreadCrumb1(null);
+        // this.props.pageHelmet('Reset Password');
     }
 
     componentWillUnmount() {

@@ -34,6 +34,7 @@ class ManagePermission extends Component {
         this.props.pageDescription('Create a new permission and modify the existing permissions.');
         this.props.pageBreadCrumb1('User Management');
         this.props.pageHelmet('Manage User - Permissions');
+        this.props.toggleHeaderInfo(true);
     }
 
     componentWillUnmount() {

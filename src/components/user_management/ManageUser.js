@@ -38,6 +38,7 @@ class ManageUser extends Component {
         this.props.pageDescription('Create and configure the user.');
         this.props.pageBreadCrumb1('User Management');
         this.props.pageHelmet('Manage User - Users');
+        this.props.toggleHeaderInfo(true);
     }
 
     componentWillUnmount() {
