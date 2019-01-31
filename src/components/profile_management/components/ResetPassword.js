@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Card, Modal } from 'antd';
+import { Form, Input, Button, Modal } from 'antd';
 import { resetPasswordUser } from '../../../helpers/AdminController';
 
 const success = Modal.success;
