@@ -52,7 +52,7 @@ class Account extends Component {
         return (
             <div className="padding-30 padding-left-50 padding-right-50 padding-bottom-20">
                 <Layout className="menu-layout">
-                    <Sider width={260}>
+                    <Sider width={250}>
                         <Menu
                             className="menu-height"
                             mode="inline"
