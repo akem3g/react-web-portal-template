@@ -121,7 +121,7 @@ class ResetPassword extends Component {
 
                     <FormItem className="margin-bottom-0">
                         <Button loading={loading} type="primary" onClick={() => this.handleSubmit()}>
-                            Save
+                            Reset Password
                         </Button>
                     </FormItem>
                 </Form>
