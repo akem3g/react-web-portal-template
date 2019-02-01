@@ -272,3 +272,12 @@
 .menu-content {
   padding: 0px 25px;
 }
+
+.header-white {
+  background: #FFFFFF;
+  padding: 0px;
+}
+
+.sidebar-height {
+  min-height: 100vh;
+}

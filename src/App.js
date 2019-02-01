@@ -237,7 +237,7 @@ class App extends Component {
 
         return (
             <Router>
-                <Layout style={{ minHeight: '100vh' }}>
+                <Layout className="sidebar-height">
                     <Helmet>
                         <title>{helmet}</title>
                     </Helmet>
@@ -246,7 +246,7 @@ class App extends Component {
                         : null}
                     <Layout>
                         {is_sidebar ? <div>
-                            <Header style={{ background: '#fff', padding: 0 }}>
+                            <Header className="header-white">
                                 <div className="header-width">
                                     <div className="float-left">
                                         <Icon
@@ -352,7 +352,7 @@ class SideBar extends Component {
                     </Menu.Item>
                 );
             }
-        })
+        });
 
         return (
             <Sider
