@@ -272,6 +272,7 @@
 
 .menu-content {
   padding: 0px 25px;
+  min-height: 30em;
 }
 
 .header-white {

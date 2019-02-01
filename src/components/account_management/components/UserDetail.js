@@ -99,7 +99,7 @@ class UserDetail extends Component {
 
                         <FormItem className="margin-bottom-0">
                             <Button loading={loading} type="primary" onClick={() => this.handleSubmit()}>
-                                Save
+                                Update Information
                             </Button>
                         </FormItem>
                     </Form>

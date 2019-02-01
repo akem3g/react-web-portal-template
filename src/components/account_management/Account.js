@@ -20,7 +20,7 @@ class Account extends Component {
         this._isMounted = true;
         this.props.toggleSideBar(true);
         this.props.pageTitle('Manage Account');
-        this.props.pageDescription('You can update your details and reset your password here.');
+        this.props.pageDescription('You can update your details, upload a profile picture and reset your password here.');
         this.props.pageBreadCrumb1(null);
         this.props.pageHelmet('Manage Account');
         this.props.toggleHeaderInfo(true);
