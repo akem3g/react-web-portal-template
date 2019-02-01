@@ -12,7 +12,7 @@ import ManageMenu from './components/menu_management/ManageMenu';
 import ManageRole from './components/user_management/ManageRole';
 import ManagePermission from './components/user_management/ManagePermission';
 import Upload from './components/upload_management/Upload';
-import Profile from './components/profile_management/Profile';
+import Account from './components/account_management/Account';
 
 import './App.css';
 
@@ -149,7 +149,7 @@ class App extends Component {
                         <PrivateRoute
                             path="/profile"
                             component={(props) =>
-                                <Profile
+                                <Account
                                     {...props}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}

@@ -6,7 +6,7 @@ import UserDetail from './components/UserDetail';
 
 const { Content, Sider } = Layout;
 
-class Profile extends Component {
+class Account extends Component {
     _isMounted = false;
 
     constructor(props) {
@@ -26,10 +26,10 @@ class Profile extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.props.toggleSideBar(true);
-        this.props.pageTitle('Manage Profile');
+        this.props.pageTitle('Manage Account');
         this.props.pageDescription('You can update your details and reset your password here.');
         this.props.pageBreadCrumb1(null);
-        this.props.pageHelmet('Manage Profile');
+        this.props.pageHelmet('Manage Account');
         this.props.toggleHeaderInfo(true);
     }
 
@@ -71,4 +71,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default Account;
