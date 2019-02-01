@@ -12,14 +12,7 @@ class Account extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            required: ['admin-tasks'],
-            allowed: [],
-            permissions: [],
-            menu_click: 1,
-            page_title: '',
-            page_description: '',
-            page_breadcrumb_1: null,
-            helmet: ''
+            menu_click: '1'
         }
     }
 
@@ -33,15 +26,19 @@ class Account extends Component {
         this.props.toggleHeaderInfo(true);
     }
 
+    handleMenuClick(value) {
+        this.setState({ menu_click: value.key });
+    }
+
     menuSelected() {
         const { menu_click } = this.state;
 
-        if (menu_click === 1) {
+        if (menu_click === '1') {
             return (
                 <UserDetail />
             );
         }
-        else if (menu_click === 2) {
+        else if (menu_click === '2') {
             return (
                 <ResetPassword />
             );
@@ -57,8 +54,17 @@ class Account extends Component {
                             className="menu-height"
                             mode="inline"
                             defaultSelectedKeys={['1']}>
-                            <Menu.Item key="1" onClick={() => this.setState({ menu_click: 1 })}><Icon type="user" />User Information</Menu.Item>
-                            <Menu.Item key="2" onClick={() => this.setState({ menu_click: 2 })}><Icon type="key" />Reset Password</Menu.Item>
+                            <Menu.Item
+                                key="1"
+                                onClick={this.handleMenuClick.bind(this)}>
+                                <Icon type="user" />User Information
+                            </Menu.Item>
+
+                            <Menu.Item
+                                key="2"
+                                onClick={this.handleMenuClick.bind(this)}>
+                                <Icon type="key" />Reset Password
+                            </Menu.Item>
                         </Menu>
                     </Sider>
 
@@ -66,7 +72,7 @@ class Account extends Component {
                         {this.menuSelected()}
                     </Content>
                 </Layout>
-        </div>
+            </div>
         );
     }
 }

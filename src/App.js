@@ -159,7 +159,7 @@ class App extends Component {
                                     toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
-                            path="/users"
+                            path="/user-management/users"
                             component={(props) =>
                                 <ManageUser
                                     {...props}
@@ -171,7 +171,7 @@ class App extends Component {
                                     toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
-                            path="/roles"
+                            path="/user-management/roles"
                             component={(props) =>
                                 <ManageRole
                                     {...props}
@@ -183,7 +183,7 @@ class App extends Component {
                                     toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
                             } />
                         <PrivateRoute
-                            path="/permissions"
+                            path="/user-management/permissions"
                             component={(props) =>
                                 <ManagePermission
                                     {...props}
