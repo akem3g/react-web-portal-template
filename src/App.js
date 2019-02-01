@@ -147,7 +147,7 @@ class App extends Component {
                                     pageHelmet={this.pageHelmet.bind(this)} />
                             } />
                         <PrivateRoute
-                            path="/profile"
+                            path="/account"
                             component={(props) =>
                                 <Account
                                     {...props}
@@ -258,8 +258,8 @@ class App extends Component {
                                         <Tooltip title="Log Out">
                                             <Icon type="logout" className="padding-right-10 icon-header-16 trigger" onClick={() => this.logout()} />
                                         </Tooltip>
-                                        <Tooltip title="Profile">
-                                            <Link to="/profile" style={{ color: '#606060' }}>
+                                        <Tooltip title="Account">
+                                            <Link to="/account" style={{ color: '#606060' }}>
                                                 <Icon type="user" className="padding-right-10 icon-header-16 trigger" />
                                             </Link>
                                         </Tooltip>
