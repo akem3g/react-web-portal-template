@@ -296,7 +296,7 @@ class SideBar extends Component {
         super(props);
         this.state = {
             collapsed: false,
-            sidebar: [],
+            sidebar: []
         }
     }
 
@@ -306,9 +306,11 @@ class SideBar extends Component {
 
     render() {
         const { sidebar } = this.props;
+        const { collapsed } = this.state;
+        var selected_path = window.location.pathname;
+
         const sidebar_menus = sidebar.map((item) => {
             let url = "/" + item.url;
-
 
             if (item.sub_menus) {
                 return (
@@ -319,13 +321,13 @@ class SideBar extends Component {
                                 {item.parent_menu}
                             </span>
                         </span>}
-                        key={item.key}>
+                        key={url}>
 
                         {item.sub_menus.map((sub_menu) => {
                             let url = "/" + sub_menu.url;
 
                             return (
-                                <Menu.Item key={"sub_menu" + sub_menu.key}>
+                                <Menu.Item key={url}>
                                     <Link to={url}>
                                         <Icon type={sub_menu.submenu_icon} />
                                         <span>
@@ -340,7 +342,7 @@ class SideBar extends Component {
             }
             else {
                 return (
-                    <Menu.Item key={"menu" + item.key}>
+                    <Menu.Item key={url}>
                         <Link to={url}>
                             <Icon type={item.menu_icon} />
                             <span>
@@ -355,10 +357,10 @@ class SideBar extends Component {
         return (
             <Sider
                 collapsible
-                collapsed={this.state.collapsed}
+                collapsed={collapsed}
                 trigger={null}>
                 <div className="logo" />
-                <Menu theme="dark" mode="inline">
+                <Menu theme="dark" mode="inline" selectedKeys={[selected_path]}>
                     {sidebar_menus}
                 </Menu>
             </Sider>
