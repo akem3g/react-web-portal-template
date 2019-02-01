@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Modal } from 'antd';
 
-class ImageProfile extends Component {
+class ProfileImage extends Component {
     _isMounted = false;
 
     constructor(props) {
@@ -26,4 +25,4 @@ class ImageProfile extends Component {
     }
 }
 
-export default ImageProfile;
+export default ProfileImage;

@@ -38,7 +38,7 @@ class Login extends Component {
                     if (access_token) {
                         verify(access_token)
                             .then(result => {
-                                if(this._isMounted) this.setState({ loading: false });
+                                if (this._isMounted) this.setState({ loading: false });
                                 this.props.doLogin(true);
                             })
                     }
