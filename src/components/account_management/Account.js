@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 
 import ResetPassword from './components/ResetPassword';
-import UserDetail from './components/UserDetail';
+import UserInformation from './components/UserInformation';
 
 const { Content, Sider } = Layout;
 
@@ -35,7 +35,7 @@ class Account extends Component {
 
         if (menu_click === '1') {
             return (
-                <UserDetail />
+                <UserInformation />
             );
         }
         else if (menu_click === '2') {

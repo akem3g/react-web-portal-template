@@ -5,7 +5,7 @@ import { getAccount, updateAccount } from '../../../helpers/AccountController';
 const success = Modal.success;
 const FormItem = Form.Item;
 
-class UserDetail extends Component {
+class UserInformation extends Component {
     _isMounted = false;
 
     constructor(props) {
@@ -109,4 +109,4 @@ class UserDetail extends Component {
     }
 }
 
-export default Form.create()(UserDetail);
+export default Form.create()(UserInformation);
