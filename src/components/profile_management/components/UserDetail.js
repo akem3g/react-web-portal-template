@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Modal, Spin } from 'antd';
-import { getUser } from '../../../helpers/AdminController';
+import { getAccount } from '../../../helpers/AccountController';
 
 const success = Modal.success;
 const FormItem = Form.Item;
@@ -18,16 +18,16 @@ class UserDetail extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        this.user();
+        this.account();
     }
 
     componentWillUnmount() {
         this._isMounted = false;
     }
 
-    user() {
+    account() {
         var access_token = sessionStorage.getItem('access_token');
-        getUser(access_token)
+        getAccount(access_token)
             .then(result => {
                 if (result.result === 'GOOD') {
                     if(this._isMounted) this.setState({ user: result.data, page_loading: false });

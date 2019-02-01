@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
-import { resetPasswordUser } from '../../../helpers/AdminController';
+import { resetPasswordAccount } from '../../../helpers/AccountController';
 
 const success = Modal.success;
 const FormItem = Form.Item;
@@ -59,7 +59,7 @@ class ResetPassword extends Component {
             }
 
             this.setState({ loading: true });
-            resetPasswordUser(values.current_password, values.password, values.password_confirmation, access_token)
+            resetPasswordAccount(values.current_password, values.password, values.password_confirmation, access_token)
                 .then(result => {
                     if (result.result === 'GOOD') {
                         this.setState({ loading: false });
