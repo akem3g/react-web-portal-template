@@ -69,7 +69,7 @@ class ManageRole extends Component {
         listPermission(access_token)
             .then(result => {
                 if (result.result === 'GOOD') {
-                    if(this._isMounted) this.setState({
+                    if (this._isMounted) this.setState({
                         permissions: result.data,
                     });
                 }
@@ -77,17 +77,17 @@ class ManageRole extends Component {
     }
 
     showAddModal = () => {
-        if(this._isMounted) this.setState({ visible: true, clickAdd: true });
+        if (this._isMounted) this.setState({ visible: true, clickAdd: true });
     }
 
     showEditModal = () => {
-        if(this._isMounted) this.setState({ visible: true });
+        if (this._isMounted) this.setState({ visible: true });
     }
 
     handleCancel = () => {
         const form = this.props.form;
         form.resetFields();
-        if(this._isMounted) this.setState({ visible: false }, () => this.setState({ clickAdd: false }));
+        if (this._isMounted) this.setState({ visible: false }, () => this.setState({ clickAdd: false }));
     }
 
     handleCreate = () => {
@@ -99,12 +99,12 @@ class ManageRole extends Component {
                 return;
             }
             
-            if(this._isMounted) this.setState({ loading: true });
+            if (this._isMounted) this.setState({ loading: true });
             createRole(values.name, values.permission, access_token)
                 .then(result => {
                     if (result.result === 'GOOD') {
                         this.showListRole();
-                        if(this._isMounted) this.setState({ visible: false, clickAdd: false, loading: false });
+                        if (this._isMounted) this.setState({ visible: false, clickAdd: false, loading: false });
                         form.resetFields();
                     }
                 })
@@ -121,12 +121,12 @@ class ManageRole extends Component {
                 return;
             }
 
-            if(this._isMounted) this.setState({ loading: true });
+            if (this._isMounted) this.setState({ loading: true });
             updateRole(role_id, values.name, values.permission, access_token)
                 .then(result => {
                     if (result.result === 'GOOD') {
                         this.showListRole();
-                        if(this._isMounted) this.setState({ visible: false, clickAdd: false, loading: false });
+                        if (this._isMounted) this.setState({ visible: false, clickAdd: false, loading: false });
                         form.resetFields();
                     }
                 })
@@ -140,11 +140,11 @@ class ManageRole extends Component {
             title: 'Delete Role',
             content: 'Are you sure you want to delete this role?',
             onOk: () => {
-                if(this._isMounted) this.setState({ delete_loading: true });
+                if (this._isMounted) this.setState({ delete_loading: true });
                 deleteRole(role_id, access_token)
                     .then(result => {
                         if (result.result === 'GOOD') {
-                            if(this._isMounted) this.setState({ delete_loading: false });
+                            if (this._isMounted) this.setState({ delete_loading: false });
                             this.handleCancel();
                             this.showListRole();
                         }
@@ -154,7 +154,7 @@ class ManageRole extends Component {
     }
 
     onChangeNewRole = () => {
-        if(this._isMounted) this.setState({
+        if (this._isMounted) this.setState({
             role: {
                 name: ''
             }
@@ -196,7 +196,7 @@ class ManageRole extends Component {
                             pagination={{ hideOnSinglePage: true, pageSize: 30 }}
                             onRow={(record) => {
                                 return {
-                                    onClick: () => {if(this._isMounted) this.setState({ role: Object.assign({}, record), role_id: record.role_id }, this.showEditModal)}
+                                    onClick: () => {if (this._isMounted) this.setState({ role: Object.assign({}, record), role_id: record.role_id }, this.showEditModal)}
                                 };
                             }}>
                             <Column title="Role" dataIndex="role_name" key="role_name" />
