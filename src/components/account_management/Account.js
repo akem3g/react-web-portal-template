@@ -3,6 +3,7 @@ import { Layout, Menu, Icon } from 'antd';
 
 import ResetPassword from './components/ResetPassword';
 import UserInformation from './components/UserInformation';
+import ImageProfile from './components/ImageProfile';
 
 const { Content, Sider } = Layout;
 
@@ -43,6 +44,11 @@ class Account extends Component {
                 <ResetPassword />
             );
         }
+        else if (menu_click === '3') {
+            return (
+                <ImageProfile />
+            );
+        }
     }
 
     render() {
@@ -64,6 +70,12 @@ class Account extends Component {
                                 key="2"
                                 onClick={this.handleMenuClick.bind(this)}>
                                 <Icon type="key" />Reset Password
+                            </Menu.Item>
+
+                            <Menu.Item
+                                key="3"
+                                onClick={this.handleMenuClick.bind(this)}>
+                                <Icon type="smile" />Image Profile
                             </Menu.Item>
                         </Menu>
                     </Sider>
