@@ -50,3 +50,32 @@ export const resetPasswordAccount = (current_password, password, password_confir
         })
     ])
 };
+
+export const updateAccount = (name, username, email, access_token) => {
+    return Promise.race([
+        new Promise((resolve, reject) => {
+            fetch(global.URL + 'api/account/update', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + access_token
+                },
+                body: JSON.stringify({
+                    name,
+                    username,
+                    email
+                })
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                if (responseJson.result === 'GOOD') {
+                    resolve(responseJson);
+                }
+            })
+            .catch((error) => {
+                reject(error);
+            })
+        })
+    ])
+};

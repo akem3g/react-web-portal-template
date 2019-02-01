@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Modal, Spin } from 'antd';
-import { getAccount } from '../../../helpers/AccountController';
+import { getAccount, updateAccount } from '../../../helpers/AccountController';
 
 const success = Modal.success;
 const FormItem = Form.Item;
@@ -35,29 +35,30 @@ class UserDetail extends Component {
             })
     }
 
-    // handleSubmit() {
-    //     const form = this.props.form;
-    //     var access_token = sessionStorage.getItem('access_token');
+    handleSubmit() {
+        const form = this.props.form;
+        var access_token = sessionStorage.getItem('access_token');
 
-    //     form.validateFields((err, values) => {
-    //         if (err) {
-    //             return;
-    //         }
+        form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
 
-    //         this.setState({ loading: true });
-    //         getUser(values.current_password, values.password, values.password_confirmation, access_token)
-    //             .then(result => {
-    //                 if (result.result === 'GOOD') {
-    //                     this.setState({ loading: false });
-    //                     success({
-    //                         title: 'Success',
-    //                         content: 'You have sucessfully reset you password.'
-    //                     });
-    //                     form.resetFields();
-    //                 }
-    //             })
-    //     });
-    // }
+            this.setState({ loading: true });
+            updateAccount(values.name, values.username, values.email, access_token)
+                .then(result => {
+                    if (result.result === 'GOOD') {
+                        this.setState({ loading: false });
+                        success({
+                            title: 'Success',
+                            content: 'You have sucessfully updated your account.'
+                        });
+
+                        this.account();
+                    }
+                })
+        });
+    }
 
     render() {
         const { page_loading, loading, user } = this.state;
