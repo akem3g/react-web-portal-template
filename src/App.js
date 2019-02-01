@@ -256,11 +256,11 @@ class App extends Component {
                                     </div>
                                     <div className="float-right">
                                         <Tooltip title="Log Out">
-                                            <Icon type="logout" className="padding-right-10 icon-header-16 trigger" onClick={() => this.logout()} />
+                                            <Icon type="lock" twoToneColor="#eb2f96" theme="twoTone" className="padding-right-10 icon-header-16 trigger" onClick={this.logout.bind(this)} />
                                         </Tooltip>
                                         <Tooltip title="Account">
                                             <Link to="/account" style={{ color: '#606060' }}>
-                                                <Icon type="user" className="padding-right-10 icon-header-16 trigger" />
+                                                <Icon type="smile" twoToneColor="#eb2f96" theme="twoTone" className="padding-right-10 icon-header-16 trigger" />
                                             </Link>
                                         </Tooltip>
                                         <span className="text-bold">{user_name}</span>

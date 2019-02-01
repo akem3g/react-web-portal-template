@@ -69,13 +69,13 @@ class Account extends Component {
                             <Menu.Item
                                 key="2"
                                 onClick={this.handleMenuClick.bind(this)}>
-                                <Icon type="key" />Reset Password
+                                <Icon type="tool" />Reset Password
                             </Menu.Item>
 
                             <Menu.Item
                                 key="3"
                                 onClick={this.handleMenuClick.bind(this)}>
-                                <Icon type="smile" />Image Profile
+                                <Icon type="picture" />Image Profile
                             </Menu.Item>
                         </Menu>
                     </Sider>
