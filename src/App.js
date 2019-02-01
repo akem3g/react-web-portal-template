@@ -356,7 +356,7 @@ class SideBar extends Component {
 
         return (
             <Sider
-                collapsible
+                width={260}
                 collapsed={collapsed}
                 trigger={null}>
                 <div className="logo" />
