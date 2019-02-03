@@ -14,17 +14,6 @@ import Account from '../account_management/Account';
 const { Content } = Layout;
 
 class PageRoute extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            is_sidebar: true,
-            page_title: '',
-            page_description: '',
-            page_breadcrumb_1: null,
-            helmet: ''
-        };
-    }
-
     reloadMenu() {
         this.props.reloadMenu();
     }
