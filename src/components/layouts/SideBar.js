@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
+import { showSideBarMenu } from '../../helpers/AdminController';
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -13,8 +14,30 @@ class SideBar extends Component {
         }
     }
 
+    componentDidMount() {
+        this._isMounted = true;
+        var access_token = sessionStorage.getItem('access_token');
+
+        if (access_token) {
+            this.fetchSideBarMenu();
+        }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+    fetchSideBarMenu() {
+        var access_token = sessionStorage.getItem('access_token');
+
+        showSideBarMenu(access_token)
+            .then(result => {
+                if (this._isMounted) this.setState({ sidebar: result.data });
+            })
+    }
+
     render() {
-        const { sidebar } = this.props;
+        const { sidebar } = this.state;
         var selected_path = window.location.pathname;
 
         const sidebar_menus = sidebar.map((item) => {

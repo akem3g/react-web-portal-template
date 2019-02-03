@@ -36,6 +36,8 @@ class App extends Component {
             helmet: '',
             header_info: ''
         };
+
+        this.child = React.createRef();
     }
 
     componentDidMount() {
@@ -58,6 +60,10 @@ class App extends Component {
             .then(result => {
                 if (this._isMounted) this.setState({ sidebar: result.data });
             })
+    }
+
+    reloadMenu() {
+        this.child.current.fetchSideBarMenu();
     }
 
     doLogin = () => {
@@ -180,7 +186,7 @@ class App extends Component {
                             component={(props) =>
                                 <ManageMenu
                                     {...props}
-                                    reloadMenu={this.fetchSideBarMenu.bind(this)}
+                                    reloadMenu={this.reloadMenu.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
@@ -206,7 +212,7 @@ class App extends Component {
                         <title>{helmet}</title>
                     </Helmet>
                     {is_sidebar ?
-                        <SideBar sidebar={sidebar} />
+                        <SideBar ref={this.child} />
                     : null}
                     <Layout>
                         {is_sidebar ?
