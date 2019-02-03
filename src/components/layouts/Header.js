@@ -14,7 +14,11 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        this.account();
+        var access_token = sessionStorage.getItem('access_token');
+
+        if (access_token) {
+            this.account();
+        }
     }
 
     account() {
@@ -34,7 +38,6 @@ class Header extends Component {
             onOk: () => {
                 sessionStorage.removeItem('access_token');
                 sessionStorage.removeItem('name');
-                this.forceUpdate();
             }
         });
     }
