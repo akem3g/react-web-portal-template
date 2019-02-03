@@ -8,6 +8,7 @@ import SideBar from './components/layouts/SideBar';
 import Header from './components/layouts/Header';
 import BreadCrumb from './components/layouts/BreadCrumb';
 import PageRoute from './components/layouts/PageRoute';
+import Footer from './components/layouts/Footer';
 
 class App extends Component {
     _isMounted = false;
@@ -116,6 +117,7 @@ class App extends Component {
                             pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
                             pageHelmet={this.pageHelmet.bind(this)}
                             reloadUserName={this.reloadUserName.bind(this)} />
+                        <Footer />
                     </Layout>
                 </Layout>
             </Router>

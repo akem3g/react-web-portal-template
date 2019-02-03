@@ -11,8 +11,6 @@ import ManageRole from '../user_management/ManageRole';
 import ManagePermission from '../user_management/ManagePermission';
 import Account from '../account_management/Account';
 
-import Footer from '../layouts/Footer';
-
 const { Content } = Layout;
 
 class PageRoute extends Component {
@@ -133,8 +131,6 @@ class PageRoute extends Component {
                             } />
                     </Switch>
                 </Content>
-
-                <Footer />
             </Layout>
         );
     }
