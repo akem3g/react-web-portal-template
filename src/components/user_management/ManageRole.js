@@ -37,7 +37,6 @@ class ManageRole extends Component {
         this.props.pageDescription('Assign the roles on each user here.');
         this.props.pageBreadCrumb1('User Management');
         this.props.pageHelmet('Manage User - Roles');
-        this.props.toggleHeaderInfo(true);
     }
 
     componentWillUnmount() {

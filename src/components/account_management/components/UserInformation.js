@@ -44,7 +44,7 @@ class UserInformation extends Component {
                         });
 
                         this.props.reloadUser();
-                        sessionStorage.setItem('name', values.name);
+                        this.props.reloadUserName();
                     }
                 })
         });

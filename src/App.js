@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import { Helmet } from 'react-helmet';
 
-import { showSideBarMenu } from './helpers/AdminController';
 import { PrivateRoute } from './helpers/PrivateRoute';
 
 import Login from './components/Login';
@@ -18,7 +17,7 @@ import SideBar from './components/layouts/SideBar';
 import Footer from './components/layouts/Footer';
 import Header from './components/layouts/Header';
 import BreadCrumb from './components/layouts/BreadCrumb';
-import PageRoute from './components/layouts/PageRoute';
+// import PageRoute from './components/layouts/PageRoute';
 
 const { Content } = Layout;
 
@@ -28,46 +27,31 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sidebar: [],
-            is_sidebar: false,
+            is_sidebar: true,
             page_title: '',
             page_description: '',
             page_breadcrumb_1: null,
-            helmet: '',
-            header_info: ''
+            helmet: ''
         };
 
-        this.child = React.createRef();
+        this.SideBar = React.createRef();
+        this.Header = React.createRef();
     }
 
     componentDidMount() {
         this._isMounted = true;
-        var access_token = sessionStorage.getItem('access_token');
-
-        if (access_token) {
-            this.fetchSideBarMenu();
-        }
     }
 
     componentWillUnmount() {
         this._isMounted = false;
     }
 
-    fetchSideBarMenu() {
-        var access_token = sessionStorage.getItem('access_token');
-
-        showSideBarMenu(access_token)
-            .then(result => {
-                if (this._isMounted) this.setState({ sidebar: result.data });
-            })
-    }
-
     reloadMenu() {
         this.child.current.fetchSideBarMenu();
     }
 
-    doLogin = () => {
-        this.fetchSideBarMenu();
+    doLogin() {
+        this.child.current.fetchSideBarMenu();
     }
 
     toggleSideBar(val) {
@@ -110,12 +94,8 @@ class App extends Component {
         }
     }
 
-    toggleHeaderInfo(val) {
-        const { header_info } = this.state;
-
-        if (val !== header_info) {
-            if (this._isMounted) this.setState({ header_info: val });
-        }
+    reloadUserName() {
+        this.Header.current.account();
     }
 
     pageRoute() {
@@ -128,7 +108,7 @@ class App extends Component {
                             path="/"
                             component={() =>
                                 <Login
-                                    doLogin={this.doLogin}
+                                    doLogin={this.doLogin.bind(this)}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageHelmet={this.pageHelmet.bind(this)} />
                             } />
@@ -142,7 +122,7 @@ class App extends Component {
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
                                     pageHelmet={this.pageHelmet.bind(this)}
-                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
+                                    reloadUserName={this.reloadUserName.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/user-management/users"
@@ -153,8 +133,7 @@ class App extends Component {
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)}
-                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/user-management/roles"
@@ -165,8 +144,7 @@ class App extends Component {
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)}
-                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)} />
                             } />
                         <PrivateRoute
                             path="/user-management/permissions"
@@ -177,8 +155,7 @@ class App extends Component {
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)}
-                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)} />
 
                             } />
                         <PrivateRoute
@@ -191,8 +168,7 @@ class App extends Component {
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}
                                     pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)}
-                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
+                                    pageHelmet={this.pageHelmet.bind(this)} />
                             } />
                     </Switch>
                 </Content>
@@ -203,7 +179,7 @@ class App extends Component {
     }
 
     render() {
-        const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet, header_info, sidebar } = this.state;
+        const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet } = this.state;
 
         return (
             <Router>
@@ -212,18 +188,16 @@ class App extends Component {
                         <title>{helmet}</title>
                     </Helmet>
                     {is_sidebar ?
-                        <SideBar ref={this.child} />
+                        <SideBar ref={this.SideBar} />
                     : null}
                     <Layout>
                         {is_sidebar ?
                             <div>
-                                <Header />
-                                {header_info ?
-                                    <BreadCrumb
-                                        page_breadcrumb_1={page_breadcrumb_1}
-                                        page_title={page_title}
-                                        page_description={page_description} />
-                                : null}
+                                <Header ref={this.Header} />
+                                <BreadCrumb
+                                    page_breadcrumb_1={page_breadcrumb_1}
+                                    page_title={page_title}
+                                    page_description={page_description} />
                             </div>
                         : null}
                         {/* <PageRoute /> */}

@@ -27,7 +27,6 @@ class Account extends Component {
         this.props.pageDescription('You can update your information details, addresses, upload a profile picture and reset your password here.');
         this.props.pageBreadCrumb1(null);
         this.props.pageHelmet('Manage Account');
-        this.props.toggleHeaderInfo(true);
 
         this.account();
         this.resetPasswordParameter();
@@ -52,8 +51,8 @@ class Account extends Component {
         this.account();
     }
 
-    reloadUsername() {
-        this.props.reloadUsername();
+    reloadUserName() {
+        this.props.reloadUserName();
     }
 
     handleMenuClick(value) {
@@ -73,7 +72,7 @@ class Account extends Component {
 
         if (menu_click === '1') {
             return (
-                <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} reloadUsername={this.reloadUsername.bind(this)} />
+                <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} reloadUserName={this.reloadUserName.bind(this)} />
             );
         }
         else if (menu_click === '3') {

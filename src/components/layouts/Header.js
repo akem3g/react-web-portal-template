@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Tooltip, Layout, Modal } from 'antd';
+import { getAccount } from '../../helpers/AccountController';
 
 const confirm = Modal.confirm;
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: ''
+        };
+    }
+
+    componentDidMount() {
+        this.account();
+    }
+
+    account() {
+        var access_token = sessionStorage.getItem('access_token');
+        getAccount(access_token)
+            .then(result => {
+                if (result.result === 'GOOD') {
+                    this.setState({ user: result.data });
+                }
+            })
+    }
+    
     logout() {
         confirm({
             title: 'Confirm',
@@ -18,7 +40,7 @@ class Header extends Component {
     }
 
     render() {
-        var user_name = sessionStorage.getItem('name');
+        const { user } = this.state;
 
         const resetPassword = {
             pathname: "/account", 
@@ -58,7 +80,7 @@ class Header extends Component {
                                 onClick={this.logout.bind(this)} />
                         </Tooltip>
 
-                        <span className="text-bold">{user_name}</span>
+                        <span className="text-bold">{user.name}</span>
                     </div>
                 </div>
             </Layout.Header>
