@@ -24,7 +24,7 @@ class Account extends Component {
         this._isMounted = true;
         this.props.toggleSideBar(true);
         this.props.pageTitle('Manage Account');
-        this.props.pageDescription('You can update your details, upload a profile picture and reset your password here.');
+        this.props.pageDescription('You can update your information details, addresses, upload a profile picture and reset your password here.');
         this.props.pageBreadCrumb1(null);
         this.props.pageHelmet('Manage Account');
         this.props.toggleHeaderInfo(true);
@@ -64,7 +64,7 @@ class Account extends Component {
         const param = this.props.location.param;
 
         if (param === 'reset-password') {
-            this.setState({ menu_click: '2' });
+            if (this._isMounted) this.setState({ menu_click: '4' });
         }
     }
 
@@ -76,14 +76,14 @@ class Account extends Component {
                 <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} reloadUsername={this.reloadUsername.bind(this)} />
             );
         }
-        else if (menu_click === '2') {
-            return (
-                <ResetPassword />
-            );
-        }
         else if (menu_click === '3') {
             return (
                 <ProfileImage user={user} reloadUser={this.reloadUser.bind(this)} />
+            );
+        }
+        else if (menu_click === '4') {
+            return (
+                <ResetPassword />
             );
         }
     }
@@ -98,7 +98,7 @@ class Account extends Component {
                         <Menu
                             className="menu-height"
                             mode="inline"
-                            defaultSelectedKeys={param ? ['2'] : ['1']}>
+                            defaultSelectedKeys={param ? ['4'] : ['1']}>
                             <Menu.Item
                                 key="1"
                                 onClick={this.handleMenuClick.bind(this)}>
@@ -108,13 +108,19 @@ class Account extends Component {
                             <Menu.Item
                                 key="2"
                                 onClick={this.handleMenuClick.bind(this)}>
-                                <Icon type="tool" />Reset Password
+                                <Icon type="solution" />User Address
                             </Menu.Item>
 
                             <Menu.Item
                                 key="3"
                                 onClick={this.handleMenuClick.bind(this)}>
                                 <Icon type="picture" />Profile Image
+                            </Menu.Item>
+
+                            <Menu.Item
+                                key="4"
+                                onClick={this.handleMenuClick.bind(this)}>
+                                <Icon type="safety-certificate" />Reset Password
                             </Menu.Item>
                         </Menu>
                     </Sider>
