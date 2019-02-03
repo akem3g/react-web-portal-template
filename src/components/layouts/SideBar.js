@@ -9,18 +9,12 @@ class SideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapsed: false,
             sidebar: []
         }
     }
 
-    onCollapse = () => {
-        this.setState({ collapsed: !this.state.collapsed });
-    }
-
     render() {
         const { sidebar } = this.props;
-        const { collapsed } = this.state;
         var selected_path = window.location.pathname;
 
         const sidebar_menus = sidebar.map((item) => {
@@ -69,10 +63,7 @@ class SideBar extends Component {
         });
 
         return (
-            <Sider
-                width={260}
-                collapsed={collapsed}
-                trigger={null}>
+            <Sider width={260}>
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" selectedKeys={[selected_path]}>
                     {sidebar_menus}

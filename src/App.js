@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { Layout, Icon, Breadcrumb, Tooltip, Modal, Card } from 'antd';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Layout } from 'antd';
 import { Helmet } from 'react-helmet';
 
 import { showSideBarMenu } from './helpers/AdminController';
@@ -15,9 +15,11 @@ import Account from './components/account_management/Account';
 
 import './App.css';
 import SideBar from './components/layouts/SideBar';
+import Footer from './components/layouts/Footer';
+import Header from './components/layouts/Header';
+import BreadCrumb from './components/layouts/BreadCrumb';
 
-const { Content, Footer, Header } = Layout;
-const confirm = Modal.confirm;
+const { Content } = Layout;
 
 class App extends Component {
     _isMounted = false;
@@ -25,7 +27,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapsed: false,
             sidebar: [],
             is_sidebar: false,
             page_title: '',
@@ -62,22 +63,6 @@ class App extends Component {
 
     doLogin = () => {
         this.fetchSideBarMenu();
-    }
-
-    onCollapse = () => {
-        if (this._isMounted) this.child.current.onCollapse();
-    }
-
-    logout = () => {
-        confirm({
-            title: 'Confirm',
-            content: 'Are you sure you want to log out?',
-            onOk: () => {
-                sessionStorage.removeItem('access_token');
-                sessionStorage.removeItem('name');
-                this.forceUpdate();
-            }
-        });
     }
 
     toggleSideBar(val) {
@@ -126,18 +111,6 @@ class App extends Component {
         if (val !== header_info) {
             if (this._isMounted) this.setState({ header_info: val });
         }
-    }
-
-    openGithub() {
-        window.open('https://github.com/akem3g', '_blank');
-    }
-
-    openTwitter() {
-        window.open('https://twitter.com/hakiimmislam', '_blank');
-    }
-
-    openFacebook() {
-        window.open('https://facebook.com/hakiimmislam', '_blank');
     }
 
     pageRoute() {
@@ -219,41 +192,13 @@ class App extends Component {
                     </Switch>
                 </Content>
 
-                <Footer className="footer">
-                    <Tooltip title="github">
-                        <Icon
-                            type="github"
-                            className="padding-right-10 icon-header-16 trigger"
-                            onClick={this.openGithub.bind(this)} />
-                    </Tooltip>
-
-                    <Tooltip title="twitter">
-                        <Icon
-                            type="twitter"
-                            className="padding-right-10 icon-header-16 trigger"
-                            onClick={this.openTwitter.bind(this)} />
-                    </Tooltip>
-
-                    <Tooltip title="facebook">
-                        <Icon
-                            type="facebook"
-                            className="padding-right-10 icon-header-16 trigger"
-                            onClick={this.openFacebook.bind(this)} />
-                    </Tooltip>
-                    akem3g ©2019
-                </Footer>
+                <Footer />
             </Layout>
         );
     }
 
     render() {
         const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet, header_info, sidebar } = this.state;
-        var user_name = sessionStorage.getItem('name');
-
-        const resetPassword = {
-            pathname: "/account", 
-            param: "reset-password" 
-        };
 
         return (
             <Router>
@@ -262,63 +207,19 @@ class App extends Component {
                         <title>{helmet}</title>
                     </Helmet>
                     {is_sidebar ?
-                        <SideBar ref={this.child} sidebar={sidebar} />
+                        <SideBar
+                            ref={this.child}
+                            sidebar={sidebar} />
                         : null}
                     <Layout>
                         {is_sidebar ? <div>
-                            <Header className="header-white">
-                                <div className="header-width">
-                                    <div className="float-left">
-                                        <Icon
-                                            className="trigger icon-header-20"
-                                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                                            onClick={this.onCollapse} />
-                                    </div>
-                                    <div className="float-right">
-                                        <Tooltip title="Reset Password">
-                                            <Link to={resetPassword}>
-                                                <Icon
-                                                    type="safety-certificate"
-                                                    twoToneColor="#eb2f96"
-                                                    theme="twoTone"
-                                                    className="padding-right-10 icon-header-16" />
-                                            </Link>
-                                        </Tooltip>
-
-                                        <Tooltip title="Account">
-                                            <Link to="/account">
-                                                <Icon
-                                                    type="smile"
-                                                    twoToneColor="#eb2f96"
-                                                    theme="twoTone"
-                                                    className="padding-right-10 icon-header-16" />
-                                            </Link>
-                                        </Tooltip>
-
-                                        <Tooltip title="Log Out">
-                                            <Icon
-                                                type="unlock"
-                                                twoToneColor="#eb2f96"
-                                                theme="twoTone"
-                                                className="padding-right-10 icon-header-16"
-                                                onClick={this.logout.bind(this)} />
-                                        </Tooltip>
-
-                                        <span className="text-bold">{user_name}</span>
-                                    </div>
-                                </div>
-                            </Header>
+                            <Header />
 
                             {header_info ?
-                                <Card className="content-header">
-                                    <Breadcrumb className="padding-bottom-20">
-                                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                                        {page_breadcrumb_1 ? <Breadcrumb.Item>{page_breadcrumb_1}</Breadcrumb.Item> : null}
-                                        <Breadcrumb.Item>{page_title}</Breadcrumb.Item>
-                                    </Breadcrumb>
-                                    <h2 className="title-bold">{page_title}</h2>
-                                    <span>{page_description}</span>
-                                </Card>
+                                <BreadCrumb
+                                    page_breadcrumb_1={page_breadcrumb_1}
+                                    page_title={page_title}
+                                    page_description={page_description} />
                             : null}
 
                         </div> : null}
