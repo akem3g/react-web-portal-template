@@ -5,6 +5,7 @@ import { getAccount } from '../../helpers/AccountController';
 import ResetPassword from './components/ResetPassword';
 import UserInformation from './components/UserInformation';
 import ProfileImage from './components/ProfileImage';
+import UserAddress from './components/UserAddress';
 
 const { Content, Sider } = Layout;
 
@@ -24,7 +25,7 @@ class Account extends Component {
         this._isMounted = true;
         this.props.toggleSideBar(true);
         this.props.pageTitle('Manage Account');
-        this.props.pageDescription('You can update your information details, addresses, upload a profile picture and reset your password here.');
+        this.props.pageDescription('You can update your information details, address, upload a profile picture and reset your password here.');
         this.props.pageBreadCrumb1(null);
         this.props.pageHelmet('Manage Account');
 
@@ -82,6 +83,11 @@ class Account extends Component {
                     user={user}
                     reloadUser={this.reloadUser.bind(this)}
                     reloadUserName={this.reloadUserName.bind(this)} />
+            );
+        }
+        else if (menu_click === '2') {
+            return (
+                <UserAddress />
             );
         }
         else if (menu_click === '3') {

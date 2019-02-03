@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Tooltip, Layout } from 'antd';
 import { getAccount } from '../../helpers/AccountController';
+import PageDrawer from './PageDrawer';
 
 class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: ''
+            user: '',
+            drawer: false
         };
     }
 
@@ -34,8 +36,17 @@ class Header extends Component {
         sessionStorage.removeItem('name');
     }
 
+    openDrawer() {
+        this.setState({ drawer: true });
+    }
+    
+    closeDrawer() {
+        this.setState({ drawer: false });
+
+    }
+
     render() {
-        const { user } = this.state;
+        const { user, drawer } = this.state;
 
         const resetPassword = {
             pathname: "/account", 
@@ -66,6 +77,15 @@ class Header extends Component {
                             </Link>
                         </Tooltip>
 
+                        <Tooltip title="Account Overview">
+                            <Icon
+                                type="idcard"
+                                twoToneColor="#eb2f96"
+                                theme="twoTone"
+                                className="padding-right-10 icon-header-16 trigger"
+                                onClick={this.openDrawer.bind(this)} />
+                        </Tooltip>
+
                         <Tooltip title="Log Out">
                             <Link to="/">
                                 <Icon
@@ -80,6 +100,8 @@ class Header extends Component {
                         <span className="text-bold">{user.name}</span>
                     </div>
                 </div>
+
+                <PageDrawer openDrawer={drawer} closeDrawer={this.closeDrawer.bind(this)} />
             </Layout.Header>
         );
     }
