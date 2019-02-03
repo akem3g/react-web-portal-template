@@ -220,21 +220,21 @@ class App extends Component {
                 </Content>
 
                 <Footer className="footer">
-                    <Tooltip title="akem3g's github">
+                    <Tooltip title="github">
                         <Icon
                             type="github"
                             className="padding-right-10 icon-header-16 trigger"
                             onClick={this.openGithub.bind(this)} />
                     </Tooltip>
 
-                    <Tooltip title="akem3g's twitter">
+                    <Tooltip title="twitter">
                         <Icon
                             type="twitter"
                             className="padding-right-10 icon-header-16 trigger"
                             onClick={this.openTwitter.bind(this)} />
                     </Tooltip>
 
-                    <Tooltip title="akem3g's facebook">
+                    <Tooltip title="facebook">
                         <Icon
                             type="facebook"
                             className="padding-right-10 icon-header-16 trigger"
