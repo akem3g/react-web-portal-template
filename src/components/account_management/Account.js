@@ -30,6 +30,7 @@ class Account extends Component {
         this.props.toggleHeaderInfo(true);
 
         this.account();
+        this.resetPasswordParameter();
     }
 
     componentWillUnmount() {
@@ -51,8 +52,20 @@ class Account extends Component {
         this.account();
     }
 
+    reloadUsername() {
+        this.props.reloadUsername();
+    }
+
     handleMenuClick(value) {
         if (this._isMounted) this.setState({ menu_click: value.key });
+    }
+
+    resetPasswordParameter() {
+        const param = this.props.location.param;
+
+        if (param === 'reset-password') {
+            this.setState({ menu_click: '2' });
+        }
     }
 
     menuSelected() {
@@ -60,7 +73,7 @@ class Account extends Component {
 
         if (menu_click === '1') {
             return (
-                <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} />
+                <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} reloadUsername={this.reloadUsername.bind(this)} />
             );
         }
         else if (menu_click === '2') {
@@ -76,6 +89,8 @@ class Account extends Component {
     }
 
     render() {
+        const param = this.props.location.param;
+
         return (
             <div className="padding-30 padding-left-50 padding-right-50 padding-bottom-20">
                 <Layout className="menu-layout">
@@ -83,7 +98,7 @@ class Account extends Component {
                         <Menu
                             className="menu-height"
                             mode="inline"
-                            defaultSelectedKeys={['1']}>
+                            defaultSelectedKeys={param ? ['2'] : ['1']}>
                             <Menu.Item
                                 key="1"
                                 onClick={this.handleMenuClick.bind(this)}>

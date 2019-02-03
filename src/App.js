@@ -14,7 +14,6 @@ import ManagePermission from './components/user_management/ManagePermission';
 import Account from './components/account_management/Account';
 
 import './App.css';
-import { getAccount } from './helpers/AccountController';
 
 const { Content, Footer, Sider, Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -251,6 +250,11 @@ class App extends Component {
         const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet, header_info, sidebar } = this.state;
         var user_name = sessionStorage.getItem('name');
 
+        const resetPassword = {
+            pathname: "/account", 
+            param: "reset-password" 
+        };
+
         return (
             <Router>
                 <Layout className="sidebar-height">
@@ -271,23 +275,33 @@ class App extends Component {
                                             onClick={this.onCollapse} />
                                     </div>
                                     <div className="float-right">
+                                        <Tooltip title="Reset Password">
+                                            <Link to={resetPassword}>
+                                                <Icon
+                                                    type="safety-certificate"
+                                                    twoToneColor="#eb2f96"
+                                                    theme="twoTone"
+                                                    className="padding-right-10 icon-header-16" />
+                                            </Link>
+                                        </Tooltip>
+
+                                        <Tooltip title="Account">
+                                            <Link to="/account">
+                                                <Icon
+                                                    type="smile"
+                                                    twoToneColor="#eb2f96"
+                                                    theme="twoTone"
+                                                    className="padding-right-10 icon-header-16" />
+                                            </Link>
+                                        </Tooltip>
+
                                         <Tooltip title="Log Out">
                                             <Icon
                                                 type="unlock"
                                                 twoToneColor="#eb2f96"
                                                 theme="twoTone"
-                                                className="padding-right-10 icon-header-16 trigger"
+                                                className="padding-right-10 icon-header-16"
                                                 onClick={this.logout.bind(this)} />
-                                        </Tooltip>
-
-                                        <Tooltip title="Account">
-                                            <Link to="/account" style={{ color: '#606060' }}>
-                                                <Icon
-                                                    type="smile"
-                                                    twoToneColor="#eb2f96"
-                                                    theme="twoTone"
-                                                    className="padding-right-10 icon-header-16 trigger" />
-                                            </Link>
                                         </Tooltip>
 
                                         <span className="text-bold">{user_name}</span>
