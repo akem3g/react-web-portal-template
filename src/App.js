@@ -18,6 +18,7 @@ import SideBar from './components/layouts/SideBar';
 import Footer from './components/layouts/Footer';
 import Header from './components/layouts/Header';
 import BreadCrumb from './components/layouts/BreadCrumb';
+import PageRoute from './components/layouts/PageRoute';
 
 const { Content } = Layout;
 
@@ -206,19 +207,20 @@ class App extends Component {
                     </Helmet>
                     {is_sidebar ?
                         <SideBar sidebar={sidebar} />
-                        : null}
+                    : null}
                     <Layout>
-                        {is_sidebar ? <div>
-                            <Header />
-
-                            {header_info ?
-                                <BreadCrumb
-                                    page_breadcrumb_1={page_breadcrumb_1}
-                                    page_title={page_title}
-                                    page_description={page_description} />
-                            : null}
-
-                        </div> : null}
+                        {is_sidebar ?
+                            <div>
+                                <Header />
+                                {header_info ?
+                                    <BreadCrumb
+                                        page_breadcrumb_1={page_breadcrumb_1}
+                                        page_title={page_title}
+                                        page_description={page_description} />
+                                : null}
+                            </div>
+                        : null}
+                        {/* <PageRoute /> */}
                         {this.pageRoute()}
                     </Layout>
                 </Layout>
