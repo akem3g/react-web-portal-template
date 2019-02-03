@@ -16,7 +16,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            is_sidebar: false,
+            is_sidebar: true,
             page_title: '',
             page_description: '',
             page_breadcrumb_1: null,
