@@ -35,8 +35,6 @@ class App extends Component {
             helmet: '',
             header_info: ''
         };
-
-        this.child = React.createRef();
     }
 
     componentDidMount() {
@@ -207,9 +205,7 @@ class App extends Component {
                         <title>{helmet}</title>
                     </Helmet>
                     {is_sidebar ?
-                        <SideBar
-                            ref={this.child}
-                            sidebar={sidebar} />
+                        <SideBar sidebar={sidebar} />
                         : null}
                     <Layout>
                         {is_sidebar ? <div>
