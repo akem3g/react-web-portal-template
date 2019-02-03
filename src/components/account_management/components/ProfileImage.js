@@ -54,7 +54,11 @@ class ProfileImage extends Component {
                 </div>
 
                 <div className="padding-bottom-30">
-                    <Avatar shape="square" size={250} src={global.URL + "storage/" + user.id + "/" + user.image} />
+                    {user.image ?
+                        <Avatar shape="square" size={250} src={global.URL + "storage/" + user.id + "/" + user.image} />
+                    :
+                        <Avatar shape="square" size={250} icon="user" />
+                    }
                 </div>
                 
                 <Upload {...props}>
