@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Upload, Button, Icon, message } from 'antd';
+import { Upload, Button, Icon, message, Avatar } from 'antd';
 
 class ProfileImage extends Component {
     _isMounted = false;
@@ -22,6 +22,7 @@ class ProfileImage extends Component {
     render() {
         var access_token = sessionStorage.getItem('access_token');
         const { loading } = this.state;
+        const { user } = this.props;
         const currentComponent = this;
 
         const props = {
@@ -36,6 +37,7 @@ class ProfileImage extends Component {
                 if (info.file.status === 'done') {
                     currentComponent.setState({ loading: false });
                     message.success('Image uploaded successfully.');
+                    currentComponent.props.reloadUser();
                 }
                 else if (info.file.status === 'error') {
                     currentComponent.setState({ loading: false });
@@ -46,10 +48,17 @@ class ProfileImage extends Component {
 
         return (
             <div className="margin-left-20 margin-right-20">
-                <h1>Profile Image</h1>
+                <div className="padding-bottom-30">
+                    <h1 className="margin-bottom-0">Profile Image</h1>
+                    <span>To ensure the image is fit correctly, please upload an image with 1 by 1 size.</span>
+                </div>
 
+                <div className="padding-bottom-30">
+                    <Avatar shape="square" size={250} src={global.URL + "storage/" + user.id + "/" + user.image} />
+                </div>
+                
                 <Upload {...props}>
-                    <Button disabled={loading ? true : false}>
+                    <Button type="primary" disabled={loading ? true : false}>
                         <Icon type="upload" /> Click to Upload
                     </Button>
                 </Upload>
