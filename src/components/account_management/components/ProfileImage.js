@@ -19,15 +19,11 @@ class ProfileImage extends Component {
         this._isMounted = false;
     }
 
-    handleSubmit(val) {
-        console.log(val)
-    }
-
     render() {
         var access_token = sessionStorage.getItem('access_token');
         const { loading } = this.state;
         const currentComponent = this;
-        
+
         const props = {
             name: 'image',
             action: global.URL + 'api/account/upload/image',

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import { getAccount } from '../../helpers/AccountController';
 
 import ResetPassword from './components/ResetPassword';
 import UserInformation from './components/UserInformation';
@@ -13,7 +14,9 @@ class Account extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            menu_click: '1'
+            user: '',
+            menu_click: '1',
+            page_loading: false
         }
     }
 
@@ -25,10 +28,27 @@ class Account extends Component {
         this.props.pageBreadCrumb1(null);
         this.props.pageHelmet('Manage Account');
         this.props.toggleHeaderInfo(true);
+
+        this.account();
     }
 
     componentWillUnmount() {
         this._isMounted = false;
+    }
+
+    account() {
+        var access_token = sessionStorage.getItem('access_token');
+
+        getAccount(access_token)
+            .then(result => {
+                if (result.result === 'GOOD') {
+                    if (this._isMounted) this.setState({ user: result.data });
+                }
+            })
+    }
+
+    reloadUser() {
+        this.account();
     }
 
     handleMenuClick(value) {
@@ -36,11 +56,11 @@ class Account extends Component {
     }
 
     menuSelected() {
-        const { menu_click } = this.state;
+        const { menu_click, user } = this.state;
 
         if (menu_click === '1') {
             return (
-                <UserInformation />
+                <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} />
             );
         }
         else if (menu_click === '2') {
@@ -50,7 +70,7 @@ class Account extends Component {
         }
         else if (menu_click === '3') {
             return (
-                <ProfileImage />
+                <ProfileImage user={user} reloadUser={this.reloadUser.bind(this)} />
             );
         }
     }
