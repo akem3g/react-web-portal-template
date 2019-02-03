@@ -32,15 +32,15 @@ class ProfileImage extends Component {
                 authorization: 'Bearer ' + access_token,
             },
             onChange(info) {
-                currentComponent.setState({ loading: true });
+                if (currentComponent._isMounted) currentComponent.setState({ loading: true });
 
                 if (info.file.status === 'done') {
-                    currentComponent.setState({ loading: false });
-                    message.success('Image uploaded successfully.');
+                    if (currentComponent._isMounted) currentComponent.setState({ loading: false });
+                    message.success('Image successfully uploaded.');
                     currentComponent.props.reloadUser();
                 }
                 else if (info.file.status === 'error') {
-                    currentComponent.setState({ loading: false });
+                    if (currentComponent._isMounted) currentComponent.setState({ loading: false });
                     message.error('Image upload failed.');
                 }
             },

@@ -14,6 +14,7 @@ import ManagePermission from './components/user_management/ManagePermission';
 import Account from './components/account_management/Account';
 
 import './App.css';
+import { getAccount } from './helpers/AccountController';
 
 const { Content, Footer, Sider, Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -247,8 +248,7 @@ class App extends Component {
     }
 
     render() {
-        const { sidebar } = this.state;
-        const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet, header_info } = this.state;
+        const { is_sidebar, page_title, page_description, page_breadcrumb_1, helmet, header_info, sidebar } = this.state;
         var user_name = sessionStorage.getItem('name');
 
         return (
@@ -289,6 +289,7 @@ class App extends Component {
                                                     className="padding-right-10 icon-header-16 trigger" />
                                             </Link>
                                         </Tooltip>
+
                                         <span className="text-bold">{user_name}</span>
                                     </div>
                                 </div>
