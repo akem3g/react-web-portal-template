@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Icon, Tooltip, Layout, Modal } from 'antd';
 import { getAccount } from '../../helpers/AccountController';
 
-const confirm = Modal.confirm;
+// const confirm = Modal.confirm;
 
 class Header extends Component {
     constructor(props) {
@@ -32,14 +32,16 @@ class Header extends Component {
     }
     
     logout() {
-        confirm({
-            title: 'Confirm',
-            content: 'Are you sure you want to log out?',
-            onOk: () => {
-                sessionStorage.removeItem('access_token');
-                sessionStorage.removeItem('name');
-            }
-        });
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('name');
+        // confirm({
+        //     title: 'Confirm',
+        //     content: 'Are you sure you want to log out?',
+        //     onOk: () => {
+        //         sessionStorage.removeItem('access_token');
+        //         sessionStorage.removeItem('name');
+        //     }
+        // });
     }
 
     render() {
@@ -75,12 +77,14 @@ class Header extends Component {
                         </Tooltip>
 
                         <Tooltip title="Log Out">
-                            <Icon
-                                type="unlock"
-                                twoToneColor="#eb2f96"
-                                theme="twoTone"
-                                className="padding-right-10 icon-header-16"
-                                onClick={this.logout.bind(this)} />
+                            <Link to="/">
+                                <Icon
+                                    type="unlock"
+                                    twoToneColor="#eb2f96"
+                                    theme="twoTone"
+                                    className="padding-right-10 icon-header-16"
+                                    onClick={this.logout.bind(this)} />
+                            </Link>
                         </Tooltip>
 
                         <span className="text-bold">{user.name}</span>
