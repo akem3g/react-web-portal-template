@@ -30,7 +30,7 @@ class UserInformation extends Component {
         getAccount(access_token)
             .then(result => {
                 if (result.result === 'GOOD') {
-                    if(this._isMounted) this.setState({ user: result.data, page_loading: false });
+                    if (this._isMounted) this.setState({ user: result.data, page_loading: false });
                 }
             })
     }
@@ -48,7 +48,7 @@ class UserInformation extends Component {
             updateAccount(values.name, values.username, values.email, access_token)
                 .then(result => {
                     if (result.result === 'GOOD') {
-                        this.setState({ loading: false });
+                        if (this._isMounted) this.setState({ loading: false });
                         success({
                             title: 'Success',
                             content: 'You have sucessfully updated your account.'
@@ -98,7 +98,7 @@ class UserInformation extends Component {
                         </FormItem>
 
                         <FormItem className="margin-bottom-0">
-                            <Button loading={loading} type="primary" onClick={() => this.handleSubmit()}>
+                            <Button loading={loading} type="primary" onClick={this.handleSubmit.bind(this)}>
                                 Update Information
                             </Button>
                         </FormItem>

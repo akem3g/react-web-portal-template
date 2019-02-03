@@ -25,7 +25,7 @@ class ResetPassword extends Component {
 
     handleConfirmBlur = (e) => {
         const value = e.target.value;
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+        if (this._isMounted) this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
 
     compareToFirstPassword = (rule, value, callback) => {
@@ -58,7 +58,7 @@ class ResetPassword extends Component {
                 return;
             }
 
-            this.setState({ loading: true });
+            if (this._isMounted) this.setState({ loading: true });
             resetPasswordAccount(values.current_password, values.password, values.password_confirmation, access_token)
                 .then(result => {
                     if (result.result === 'GOOD') {
@@ -67,6 +67,7 @@ class ResetPassword extends Component {
                             title: 'Success',
                             content: 'You have sucessfully reset you password.'
                         });
+
                         form.resetFields();
                     }
                 })
@@ -120,7 +121,7 @@ class ResetPassword extends Component {
                     </FormItem>
 
                     <FormItem className="margin-bottom-0">
-                        <Button loading={loading} type="primary" onClick={() => this.handleSubmit()}>
+                        <Button loading={loading} type="primary" onClick={this.handleSubmit.bind(this)}>
                             Reset Password
                         </Button>
                     </FormItem>

@@ -27,8 +27,12 @@ class Account extends Component {
         this.props.toggleHeaderInfo(true);
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     handleMenuClick(value) {
-        this.setState({ menu_click: value.key });
+        if (this._isMounted) this.setState({ menu_click: value.key });
     }
 
     menuSelected() {
@@ -75,7 +79,7 @@ class Account extends Component {
                             <Menu.Item
                                 key="3"
                                 onClick={this.handleMenuClick.bind(this)}>
-                                <Icon type="picture" />ProfileImage
+                                <Icon type="picture" />Profile Image
                             </Menu.Item>
                         </Menu>
                     </Sider>

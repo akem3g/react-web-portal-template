@@ -11,7 +11,6 @@ import ManageUser from './components/user_management/ManageUser';
 import ManageMenu from './components/menu_management/ManageMenu';
 import ManageRole from './components/user_management/ManageRole';
 import ManagePermission from './components/user_management/ManagePermission';
-import Upload from './components/upload_management/Upload';
 import Account from './components/account_management/Account';
 
 import './App.css';
@@ -198,18 +197,6 @@ class App extends Component {
                                 <ManageMenu
                                     {...props}
                                     reloadMenu={this.fetchSideBarMenu.bind(this)}
-                                    toggleSideBar={this.toggleSideBar.bind(this)}
-                                    pageTitle={this.pageTitle.bind(this)}
-                                    pageDescription={this.pageDescription.bind(this)}
-                                    pageBreadCrumb1={this.pageBreadCrumb1.bind(this)}
-                                    pageHelmet={this.pageHelmet.bind(this)}
-                                    toggleHeaderInfo={this.toggleHeaderInfo.bind(this)} />
-                            } />
-                        <PrivateRoute
-                            path="/upload"
-                            component={(props) =>
-                                <Upload
-                                    {...props}
                                     toggleSideBar={this.toggleSideBar.bind(this)}
                                     pageTitle={this.pageTitle.bind(this)}
                                     pageDescription={this.pageDescription.bind(this)}

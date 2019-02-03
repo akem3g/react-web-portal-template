@@ -285,3 +285,7 @@
 .sidebar-height {
   min-height: 100vh;
 }
+
+.ant-upload-list-item-done {
+  display: none;
+}
