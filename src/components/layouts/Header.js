@@ -5,26 +5,6 @@ import { Icon, Tooltip, Layout, Modal } from 'antd';
 const confirm = Modal.confirm;
 
 class Header extends Component {
-    _isMounted = false;
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            collapsed: false,
-            sidebar: [],
-            is_sidebar: false,
-            page_title: '',
-            page_description: '',
-            page_breadcrumb_1: null,
-            helmet: '',
-            header_info: ''
-        };
-    }
-
-    onCollapse() {
-        this.setState({ collapsed: !this.state.collapsed }, () => this.props.onCollapse(this.state.collapsed));
-    }
-
     logout() {
         confirm({
             title: 'Confirm',
