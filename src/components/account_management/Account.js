@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Skeleton } from 'antd';
 import { getAccount } from '../../helpers/AccountController';
 
 import ResetPassword from './components/ResetPassword';
@@ -16,7 +16,7 @@ class Account extends Component {
         this.state = {
             user: '',
             menu_click: '1',
-            page_loading: false
+            page_loading: true
         }
     }
 
@@ -42,7 +42,7 @@ class Account extends Component {
         getAccount(access_token)
             .then(result => {
                 if (result.result === 'GOOD') {
-                    if (this._isMounted) this.setState({ user: result.data });
+                    if (this._isMounted) this.setState({ user: result.data, page_loading: false });
                 }
             })
     }
@@ -68,16 +68,33 @@ class Account extends Component {
     }
 
     menuSelected() {
-        const { menu_click, user } = this.state;
+        const { menu_click, user, page_loading } = this.state;
 
         if (menu_click === '1') {
+            if (page_loading) {
+                return (
+                    <Skeleton active />
+                );   
+            }
+
             return (
-                <UserInformation user={user} reloadUser={this.reloadUser.bind(this)} reloadUserName={this.reloadUserName.bind(this)} />
+                <UserInformation
+                    user={user}
+                    reloadUser={this.reloadUser.bind(this)}
+                    reloadUserName={this.reloadUserName.bind(this)} />
             );
         }
         else if (menu_click === '3') {
+            if (page_loading) {
+                return (
+                    <Skeleton active />
+                );   
+            }
+
             return (
-                <ProfileImage user={user} reloadUser={this.reloadUser.bind(this)} />
+                <ProfileImage
+                    user={user}
+                    reloadUser={this.reloadUser.bind(this)} />
             );
         }
         else if (menu_click === '4') {
