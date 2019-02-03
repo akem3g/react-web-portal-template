@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, Tooltip, Layout, Modal } from 'antd';
+import { Icon, Tooltip, Layout } from 'antd';
 import { getAccount } from '../../helpers/AccountController';
-
-// const confirm = Modal.confirm;
 
 class Header extends Component {
     constructor(props) {
@@ -34,14 +32,6 @@ class Header extends Component {
     logout() {
         sessionStorage.removeItem('access_token');
         sessionStorage.removeItem('name');
-        // confirm({
-        //     title: 'Confirm',
-        //     content: 'Are you sure you want to log out?',
-        //     onOk: () => {
-        //         sessionStorage.removeItem('access_token');
-        //         sessionStorage.removeItem('name');
-        //     }
-        // });
     }
 
     render() {
