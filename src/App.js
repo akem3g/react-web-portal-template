@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { Layout, Menu, Icon, Breadcrumb, Tooltip, Modal, Card } from 'antd';
+import { Layout, Icon, Breadcrumb, Tooltip, Modal, Card } from 'antd';
 import { Helmet } from 'react-helmet';
 
 import { showSideBarMenu } from './helpers/AdminController';
@@ -14,9 +14,9 @@ import ManagePermission from './components/user_management/ManagePermission';
 import Account from './components/account_management/Account';
 
 import './App.css';
+import SideBar from './components/layouts/SideBar';
 
-const { Content, Footer, Sider, Header } = Layout;
-const SubMenu = Menu.SubMenu;
+const { Content, Footer, Header } = Layout;
 const confirm = Modal.confirm;
 
 class App extends Component {
@@ -331,80 +331,3 @@ class App extends Component {
 }
 
 export default App;
-
-class SideBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            collapsed: false,
-            sidebar: []
-        }
-    }
-
-    onCollapse = () => {
-        this.setState({ collapsed: !this.state.collapsed });
-    }
-
-    render() {
-        const { sidebar } = this.props;
-        const { collapsed } = this.state;
-        var selected_path = window.location.pathname;
-
-        const sidebar_menus = sidebar.map((item) => {
-            let url = "/" + item.url;
-
-            if (item.sub_menus) {
-                return (
-                    <SubMenu
-                        title={<span>
-                            <Icon type={item.menu_icon} />
-                            <span>
-                                {item.parent_menu}
-                            </span>
-                        </span>}
-                        key={url}>
-
-                        {item.sub_menus.map((sub_menu) => {
-                            let url = "/" + sub_menu.url;
-
-                            return (
-                                <Menu.Item key={url}>
-                                    <Link to={url}>
-                                        <Icon type={sub_menu.submenu_icon} />
-                                        <span>
-                                            {sub_menu.name}
-                                        </span>
-                                    </Link>
-                                </Menu.Item>
-                            );
-                        })}
-                    </SubMenu>
-                );
-            }
-            else {
-                return (
-                    <Menu.Item key={url}>
-                        <Link to={url}>
-                            <Icon type={item.menu_icon} />
-                            <span>
-                                {item.parent_menu}
-                            </span>
-                        </Link>
-                    </Menu.Item>
-                );
-            }
-        });
-
-        return (
-            <Sider
-                width={260}
-                collapsed={collapsed}
-                trigger={null}>
-                <div className="logo" />
-                <Menu theme="dark" mode="inline" selectedKeys={[selected_path]}>
-                    {sidebar_menus}
-                </Menu>
-            </Sider>
-        );
-    }
-}
