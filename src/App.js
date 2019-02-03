@@ -128,6 +128,18 @@ class App extends Component {
         }
     }
 
+    openGithub() {
+        window.open('https://github.com/akem3g', '_blank');
+    }
+
+    openTwitter() {
+        window.open('https://twitter.com/hakiimmislam', '_blank');
+    }
+
+    openFacebook() {
+        window.open('https://facebook.com/hakiimmislam', '_blank');
+    }
+
     pageRoute() {
         return (
             <Layout>
@@ -208,6 +220,26 @@ class App extends Component {
                 </Content>
 
                 <Footer className="footer">
+                    <Tooltip title="akem3g's github">
+                        <Icon
+                            type="github"
+                            className="padding-right-10 icon-header-16 trigger"
+                            onClick={this.openGithub.bind(this)} />
+                    </Tooltip>
+
+                    <Tooltip title="akem3g's twitter">
+                        <Icon
+                            type="twitter"
+                            className="padding-right-10 icon-header-16 trigger"
+                            onClick={this.openTwitter.bind(this)} />
+                    </Tooltip>
+
+                    <Tooltip title="akem3g's facebook">
+                        <Icon
+                            type="facebook"
+                            className="padding-right-10 icon-header-16 trigger"
+                            onClick={this.openFacebook.bind(this)} />
+                    </Tooltip>
                     akem3g ©2019
                 </Footer>
             </Layout>
@@ -247,6 +279,7 @@ class App extends Component {
                                                 className="padding-right-10 icon-header-16 trigger"
                                                 onClick={this.logout.bind(this)} />
                                         </Tooltip>
+
                                         <Tooltip title="Account">
                                             <Link to="/account" style={{ color: '#606060' }}>
                                                 <Icon
